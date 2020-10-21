@@ -1,16 +1,15 @@
 package Tests;
 
-import org.junit.jupiter.api.Test;
+import PageObjests.HomePage;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseTest {
 
-	@Test
-	public void openBrowser() {
-		WebDriver driver = new ChromeDriver();
-		driver.get("http://www.trainline.com");
+	public static  WebDriver driver = new ChromeDriver();
+	private HomePage homepage = new HomePage(driver);
 
-		
-	}
+	@BeforeEach
+	public void initialSetup() { homepage.goTo(); }
 }
