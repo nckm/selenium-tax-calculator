@@ -16,6 +16,7 @@ public class JourneyTests {
 	private TaxCodePage taxCodePage = new TaxCodePage(driver);
 	private AnswersPage answerPage = new AnswersPage(driver);
 	private ResultsPage resultsPage = new ResultsPage(driver);
+	private ScottishTaxPage scottishTaxPage = new ScottishTaxPage(driver);
 
 	@BeforeEach
 	public void initialSetup() { payPage.goToURL(); }
@@ -32,5 +33,13 @@ public class JourneyTests {
 		Assertions.assertTrue(resultsPage.isRestartButtonVisible(), "Successfully navigated through each page ending on the results page.");
 	}
 
-
+	@Test
+	public void taxCodeEmpty() {
+		payPage.enterAnnualPay("24000");
+		statePensionPage.belowStatePensionAge();
+		taxCodePage.clickContinue();
+		scottishTaxPage.noScottishIncomeTax();
+		answerPage.clickGetResults();
+		Assertions.assertTrue(resultsPage.isRestartButtonVisible());
+	}
 }
