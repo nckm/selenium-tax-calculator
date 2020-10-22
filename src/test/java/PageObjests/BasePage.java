@@ -24,6 +24,7 @@ abstract class BasePage {
 
 	protected void findAndSendKeys(By selector, String inputString) {
 		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(selector));
+		element.clear();
 		element.sendKeys(inputString);
 	}
 
