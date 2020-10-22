@@ -8,12 +8,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class JourneyTests {
 
 	public static  WebDriver driver = new ChromeDriver();
-	private PayPage payPage = new PayPage(driver);
-	private StatePensionPage statePensionPage = new StatePensionPage(driver);
-	private TaxCodePage taxCodePage = new TaxCodePage(driver);
-	private AnswersPage answerPage = new AnswersPage(driver);
-	private ResultsPage resultsPage = new ResultsPage(driver);
-	private ScottishTaxPage scottishTaxPage = new ScottishTaxPage(driver);
+	private final PayPage payPage = new PayPage(driver);
+	private final StatePensionPage statePensionPage = new StatePensionPage(driver);
+	private final TaxCodePage taxCodePage = new TaxCodePage(driver);
+	private final AnswersPage answerPage = new AnswersPage(driver);
+	private final ResultsPage resultsPage = new ResultsPage(driver);
+	private final ScottishTaxPage scottishTaxPage = new ScottishTaxPage(driver);
 
 	@BeforeEach
 	public void initialSetup() { payPage.goToURL(); }
