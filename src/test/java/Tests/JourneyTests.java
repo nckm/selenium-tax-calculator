@@ -29,6 +29,8 @@ public class JourneyTests {
 		statePensionPage.belowStatePensionAge();
 		taxCodePage.enterTaxCode1250L();
 		answerPage.clickGetResults();
-		Assertions.assertTrue(resultsPage.isTotalTaxVisible(), "Successfully navigated through each page ending on the results page.");
+		Assertions.assertTrue(resultsPage.isRestartButtonVisible(), "Successfully navigated through each page ending on the results page.");
 	}
+
+
 }

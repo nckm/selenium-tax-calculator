@@ -10,7 +10,7 @@ public class ResultsPage extends BasePage {
 		super(driver);
 	}
 
-	public Boolean isTotalTaxVisible() {
+	public Boolean isRestartButtonVisible() {
 		return checkElementIsVisible(RESTART_BTN);
 	}
 }
