@@ -42,4 +42,10 @@ public class JourneyTests {
 		answerPage.clickGetResults();
 		Assertions.assertTrue(resultsPage.isRestartButtonVisible());
 	}
+
+	@Test
+	public void enterOver10000000AnnualIncome() {
+		payPage.enterAnnualPay("10000001");
+		Assertions.assertTrue(payPage.displayAmountError(), "Error displayed when entered over 10000000 in amount paid.");
+	}
 }

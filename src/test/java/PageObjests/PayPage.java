@@ -6,14 +6,15 @@ import org.openqa.selenium.WebElement;
 
 public class PayPage extends BasePage {
 
+	private static final String URL = "https://www.tax.service.gov.uk/estimate-paye-take-home-pay/your-pay";
+
+	private static final By PAY_INPUT = By.cssSelector("#amount");
+	private static final By ANNUAL_RADIO_BTN = By.cssSelector("#period-5 + label");
+	private static final By AMOUNT_PAID_ERROR = By.cssSelector("#amount-error");
+
 	public PayPage(WebDriver driver) {
 		super(driver);
 	}
-
-	private static String URL = "https://www.tax.service.gov.uk/estimate-paye-take-home-pay/your-pay";
-
-	private static By PAY_INPUT = By.cssSelector("#amount");
-	private static By ANNUAL_RADIO_BTN = By.cssSelector("#period-5 + label");
 
 	public void goToURL() {
 		driver.get(URL);
@@ -32,5 +33,9 @@ public class PayPage extends BasePage {
 
 	private void clickAnnually() {
 		findAndClick(ANNUAL_RADIO_BTN);
+	}
+
+	public boolean displayAmountError() {
+		return checkElementIsVisible(AMOUNT_PAID_ERROR);
 	}
 }
