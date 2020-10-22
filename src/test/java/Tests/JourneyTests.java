@@ -34,13 +34,13 @@ public class JourneyTests {
 	}
 
 	@Test
-	public void taxCodeEmpty() {
+	public void navigateToResultsPageWithoutTaxCode() {
 		payPage.enterAnnualPay("24000");
 		statePensionPage.belowStatePensionAge();
 		taxCodePage.clickContinue();
 		scottishTaxPage.noScottishIncomeTax();
 		answerPage.clickGetResults();
-		Assertions.assertTrue(resultsPage.isRestartButtonVisible());
+		Assertions.assertTrue(resultsPage.isRestartButtonVisible(), "Successfully navigated to the results page without entering a tax code.");
 	}
 
 	@Test
