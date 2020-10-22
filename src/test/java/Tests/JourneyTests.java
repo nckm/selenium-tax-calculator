@@ -45,13 +45,27 @@ public class JourneyTests {
 
 	@Test
 	public void enterOver10000000AnnualIncome() {
-		payPage.enterAnnualPay("10000001");
-		Assertions.assertTrue(payPage.displayAmountError(), "Error displayed when entered over 10000000 in amount paid.");
+		enterAnnualPay("10000001", "Error displayed when entered over 10000000 in amount paid.");
+	}
+
+	@Test
+	public void enterLessThanOneAnnualIncome() {
+		enterAnnualPay("0", "Error displayed when entered less than 1 in amount paid.");
+	}
+
+	@Test
+	public void enterStringAnnualIncome() {
+		enterAnnualPay("One", "Error displayed when a String that isn't a number is entered in amount paid.");
 	}
 
 	@Test
 	public void leavePayPeriodBlank() {
 		payPage.enterPayWithoutPeriod("24000");
 		Assertions.assertTrue(payPage.displayPayPeriodError(), "Error displayed when pay period left blank.");
+	}
+
+	private void enterAnnualPay(String amount, String message) {
+		payPage.enterAnnualPay(amount);
+		Assertions.assertTrue(payPage.displayAmountError(), message);
 	}
 }
