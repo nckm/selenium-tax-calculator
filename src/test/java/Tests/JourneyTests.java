@@ -30,7 +30,7 @@ public class JourneyTests {
 		statePensionPage.belowStatePensionAge();
 		taxCodePage.enterTaxCode1250L();
 		answerPage.clickGetResults();
-		Assertions.assertTrue(resultsPage.isRestartButtonVisible(), "Successfully navigated through each page ending on the results page.");
+		Assertions.assertTrue(resultsPage.isRestartButtonVisible());
 	}
 
 	@Test
@@ -40,32 +40,32 @@ public class JourneyTests {
 		taxCodePage.clickContinue();
 		scottishTaxPage.noScottishIncomeTax();
 		answerPage.clickGetResults();
-		Assertions.assertTrue(resultsPage.isRestartButtonVisible(), "Successfully navigated to the results page without entering a tax code.");
+		Assertions.assertTrue(resultsPage.isRestartButtonVisible());
 	}
 
 	@Test
 	public void enterOver10000000AnnualIncome() {
-		enterAnnualPay("10000001", "Error displayed when entered over 10000000 in amount paid.");
+		enterAnnualPay("10000001");
 	}
 
 	@Test
 	public void enterLessThanOneAnnualIncome() {
-		enterAnnualPay("0", "Error displayed when entered less than 1 in amount paid.");
+		enterAnnualPay("0");
 	}
 
 	@Test
 	public void enterStringAnnualIncome() {
-		enterAnnualPay("One", "Error displayed when a String that isn't a number is entered in amount paid.");
+		enterAnnualPay("One");
 	}
 
 	@Test
 	public void leavePayPeriodBlank() {
 		payPage.enterPayWithoutPeriod("24000");
-		Assertions.assertTrue(payPage.displayPayPeriodError(), "Error displayed when pay period left blank.");
+		Assertions.assertTrue(payPage.displayPayPeriodError());
 	}
 
-	private void enterAnnualPay(String amount, String message) {
+	private void enterAnnualPay(String amount) {
 		payPage.enterAnnualPay(amount);
-		Assertions.assertTrue(payPage.displayAmountError(), message);
+		Assertions.assertTrue(payPage.displayAmountError());
 	}
 }
