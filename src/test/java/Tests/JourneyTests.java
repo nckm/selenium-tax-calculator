@@ -48,4 +48,10 @@ public class JourneyTests {
 		payPage.enterAnnualPay("10000001");
 		Assertions.assertTrue(payPage.displayAmountError(), "Error displayed when entered over 10000000 in amount paid.");
 	}
+
+	@Test
+	public void leavePayPeriodBlank() {
+		payPage.enterPayWithoutPeriod("24000");
+		Assertions.assertTrue(payPage.displayPayPeriodError(), "Error displayed when pay period left blank.");
+	}
 }

@@ -10,6 +10,7 @@ public class PayPage extends BasePage {
 	private static final By PAY_INPUT = By.cssSelector("#amount");
 	private static final By ANNUAL_RADIO_BTN = By.cssSelector("#period-5 + label");
 	private static final By AMOUNT_PAID_ERROR = By.cssSelector("#amount-error");
+	private static final By PAY_PERIOD_ERROR = By.cssSelector("#period-error");
 
 	public PayPage(WebDriver driver) {
 		super(driver);
@@ -34,7 +35,12 @@ public class PayPage extends BasePage {
 		findAndClick(ANNUAL_RADIO_BTN);
 	}
 
-	public boolean displayAmountError() {
-		return checkElementIsVisible(AMOUNT_PAID_ERROR);
+	public boolean displayAmountError() { return checkElementIsVisible(AMOUNT_PAID_ERROR); }
+
+	public void enterPayWithoutPeriod(String amount) {
+		enterPayAmount(amount);
+		clickContinue();
 	}
+
+	public boolean displayPayPeriodError() { return checkElementIsVisible(PAY_PERIOD_ERROR); }
 }
