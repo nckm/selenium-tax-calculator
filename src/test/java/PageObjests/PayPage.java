@@ -11,6 +11,7 @@ public class PayPage extends BasePage {
 	private static final By ANNUAL_RADIO_BTN = By.cssSelector("#period-5 + label");
 	private static final By AMOUNT_PAID_ERROR = By.cssSelector("#amount-error");
 	private static final By PAY_PERIOD_ERROR = By.cssSelector("#period-error");
+	private static By CONTINUE_BTN = By.cssSelector("#button-continue");
 
 	public PayPage(WebDriver driver) {
 		super(driver);
@@ -21,18 +22,26 @@ public class PayPage extends BasePage {
 		driver.manage().window().maximize();
 	}
 
-	public void enterAnnualPay(String amount) {
+	public StatePensionPage enterAnnualPay(String amount) {
 		enterPayAmount(amount);
 		clickAnnually();
 		clickContinue();
+		return new StatePensionPage(driver);
 	}
 
-	private void enterPayAmount(String amount) {
+	private PayPage enterPayAmount(String amount) {
 		findAndSendKeys(PAY_INPUT, amount);
+		return this;
 	}
 
-	private void clickAnnually() {
+	private PayPage clickAnnually() {
 		findAndClick(ANNUAL_RADIO_BTN);
+		return this;
+	}
+
+	private StatePensionPage clickContinue() {
+		findAndClick(CONTINUE_BTN);
+		return new StatePensionPage(driver);
 	}
 
 	public boolean displayAmountError() { return checkElementIsVisible(AMOUNT_PAID_ERROR); }

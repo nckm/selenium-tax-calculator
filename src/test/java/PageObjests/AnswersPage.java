@@ -10,7 +10,8 @@ public class AnswersPage extends BasePage {
 		super(driver);
 	}
 
-	public void clickGetResults() {
+	public ResultsPage clickGetResults() {
 		findAndClick(GET_RESULTS_BTN);
+		return new ResultsPage(driver);
 	}
 }
